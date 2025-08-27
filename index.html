@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhagat Pandey | AI Researcher | Electrical Engineer</title>
+    <title>Bhagat Pandey | AI Researcher | LLM Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -39,7 +39,8 @@
         
         /* Header & Navigation */
         header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
@@ -101,10 +102,14 @@
             font-size: 3.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            background: linear-gradient(45deg, #2563eb, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--dark-gray);
             margin-bottom: 30px;
         }
@@ -141,6 +146,39 @@
             color: white;
         }
         
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--dark-gray);
+            margin-top: 10px;
+        }
+        
         /* Sections */
         section {
             padding: 100px 0;
@@ -161,6 +199,7 @@
             color: var(--dark-gray);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
         
         /* About Section */
@@ -177,27 +216,13 @@
         .about-text h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
+            color: var(--secondary);
         }
         
         .about-text p {
             margin-bottom: 20px;
             color: var(--dark-gray);
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .skill {
-            background-color: #dbeafe;
-            color: var(--primary);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1.1rem;
         }
         
         .about-image {
@@ -209,68 +234,170 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
+            background: linear-gradient(45deg, #2563eb, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .skill-category p {
+            color: var(--dark-gray);
+            line-height: 1.6;
         }
         
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
         }
         
         .project-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: 1;
+        }
+        
+        .project-card:hover::before {
+            transform: translateX(100%);
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: rgba(37, 99, 235, 0.2);
         }
         
         .project-img {
-            height: 200px;
-            background-color: var(--primary);
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover .project-img::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-img i {
+            z-index: 2;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover .project-img i {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .project-content {
-            padding: 25px;
+            padding: 30px;
+            position: relative;
         }
         
         .project-content h3 {
-            margin-bottom: 10px;
-            font-size: 1.4rem;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        
+        .project-card:hover .project-content h3 {
+            color: var(--primary);
         }
         
         .project-content p {
             color: var(--dark-gray);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1rem;
         }
         
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
         
         .tag {
-            background-color: #f1f5f9;
-            color: var(--dark-gray);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .tag:hover {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
         }
         
         /* Experience */
@@ -321,13 +448,14 @@
         .timeline-content {
             background: white;
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .timeline-content h3 {
             margin-bottom: 10px;
             color: var(--primary);
+            font-size: 1.3rem;
         }
         
         .timeline-content .date {
@@ -335,6 +463,17 @@
             font-weight: 600;
             margin-bottom: 15px;
             display: block;
+        }
+        
+        .timeline-content .company {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            color: var(--dark-gray);
+            line-height: 1.6;
         }
         
         /* Contact */
@@ -350,11 +489,13 @@
         .contact-info h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
+            color: var(--secondary);
         }
         
         .contact-info p {
             color: var(--dark-gray);
             margin-bottom: 30px;
+            font-size: 1.1rem;
         }
         
         .contact-methods {
@@ -383,6 +524,7 @@
         
         .contact-text h4 {
             margin-bottom: 5px;
+            color: var(--secondary);
         }
         
         .contact-text p, .contact-text a {
@@ -390,11 +532,15 @@
             text-decoration: none;
         }
         
+        .contact-text a:hover {
+            color: var(--primary);
+        }
+        
         .contact-form {
             flex: 1;
             background: white;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
@@ -406,6 +552,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: var(--secondary);
         }
         
         .form-group input,
@@ -413,12 +560,19 @@
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #e2e8f0;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
         }
         
         .form-group textarea {
-            height: 150px;
+            height: 120px;
             resize: vertical;
         }
         
@@ -448,6 +602,7 @@
         .footer-about p {
             color: var(--gray);
             margin-bottom: 20px;
+            line-height: 1.6;
         }
         
         .social-links {
@@ -465,6 +620,7 @@
             border-radius: 50%;
             color: white;
             transition: all 0.3s;
+            text-decoration: none;
         }
         
         .social-links a:hover {
@@ -511,6 +667,7 @@
         @media (max-width: 992px) {
             .about-content {
                 flex-direction: column;
+                text-align: center;
             }
             
             .contact-container {
@@ -520,6 +677,10 @@
             .footer-content {
                 flex-direction: column;
                 gap: 40px;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -546,6 +707,18 @@
             .timeline-dot {
                 left: 30px;
             }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -557,6 +730,7 @@
                 <a href="#" class="logo">Bhagat<span>Pandey</span></a>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -569,11 +743,31 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Machine Learning Engineer & AI Researcher</h1>
-                <p>I build intelligent systems that solve complex problems and drive innovation in artificial intelligence.</p>
+                <h1>AI Researcher | LLM Engineer | Electrical Engineer</h1>
+                <p>Specializing in Large Language Models, Deep Learning, and AI solutions. Building the future of intelligent systems through cutting-edge research and innovation.</p>
                 <div class="hero-btns">
                     <a href="#projects" class="btn">View My Work</a>
                     <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <span class="stat-number">3+</span>
+                    <div class="stat-label">Major AI Projects</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">16</span>
+                    <div class="stat-label">Document Classes</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2025</span>
+                    <div class="stat-label">M.Tech AI Graduate</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2+</span>
+                    <div class="stat-label">Years Experience</div>
                 </div>
             </div>
         </div>
@@ -584,33 +778,17 @@
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
-                <p>Learn more about my background, skills, and passion for machine learning</p>
+                <p>Learn more about my background, expertise, and passion for artificial intelligence</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Transforming Data into Intelligent Solutions</h3>
-                    <p>Hello! I'm Bhagat, a Machine Learning Engineer with 5+ years of experience in developing and deploying AI solutions. I specialize in deep learning, computer vision, and natural language processing.</p>
-                    <p>My journey began with a Computer Science degree from MIT, followed by roles at leading tech companies where I've built systems that process millions of data points daily. I'm passionate about creating AI that's both powerful and ethical.</p>
-                    <p>When I'm not coding, you can find me contributing to open-source projects, writing technical articles, or exploring the latest advancements in AI research.</p>
-                    
-                    <h4 style="margin-top: 30px;">Technical Skills</h4>
-                    <div class="skills">
-                        <span class="skill">Python</span>
-                        <span class="skill">TensorFlow</span>
-                        <span class="skill">PyTorch</span>
-                        <span class="skill">Scikit-learn</span>
-                        <span class="skill">Keras</span>
-                        <span class="skill">OpenCV</span>
-                        <span class="skill">NLP</span>
-                        <span class="skill">Computer Vision</span>
-                        <span class="skill">AWS</span>
-                        <span class="skill">Docker</span>
-                        <span class="skill">Kubernetes</span>
-                        <span class="skill">SQL</span>
-                    </div>
+                    <h3>Transforming Ideas into Intelligent Solutions</h3>
+                    <p>Hello! I'm Bhagat Pandey, an AI researcher and LLM engineer with a passion for developing cutting-edge artificial intelligence solutions. Currently pursuing my Master's in AI at Kathmandu University, I specialize in Large Language Models, Natural Language Processing, and Computer Vision.</p>
+                    <p>My journey began with a Bachelor's in Electrical Engineering from Tribhuvan University, which provided me with a strong foundation in mathematical modeling and signal processing. This background has proven invaluable in understanding the theoretical underpinnings of modern AI systems.</p>
+                    <p>I'm particularly interested in developing efficient AI solutions for real-world applications, with a focus on multilingual NLP, time series forecasting, and advancing the capabilities of transformer architectures. When I'm not researching, I enjoy teaching others about machine learning and contributing to the AI community.</p>
                 </div>
                 <div class="about-image">
-                    <div class="profile-img" style="background: linear-gradient(45deg, #2563eb, #8b5cf6); display: flex; align-items: center; justify-content: center; color: white; font-size: 5rem;">
+                    <div class="profile-img">
                         <i class="fas fa-brain"></i>
                     </div>
                 </div>
@@ -618,43 +796,95 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f1f5f9;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Expertise</h2>
+                <p>A comprehensive overview of my technical skills and specializations in AI and machine learning</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🤖 Machine Learning & AI</h3>
+                    <p>Large Language Models, Deep Learning, Natural Language Processing, Computer Vision, Time Series Analysis, Reinforcement Learning</p>
+                </div>
+                <div class="skill-category">
+                    <h3>💻 Programming & Frameworks</h3>
+                    <p>Python, C++, SQL, MATLAB, PyTorch, TensorFlow, Scikit-Learn, Transformers, BERT, BiLSTM</p>
+                </div>
+                <div class="skill-category">
+                    <h3>🧠 LLM & NLP Expertise</h3>
+                    <p>Transformer Architectures, Tokenization (BPE, SentencePiece), LoRA/QLoRA/PEFT, RAG, Prompt Engineering, RLHF, Fine-tuning Strategies</p>
+                </div>
+                <div class="skill-category">
+                    <h3>☁️ MLOps & Deployment</h3>
+                    <p>Model Training Pipelines, MLflow, W&B, Docker, Kubernetes, AWS/GCP/Azure, Inference Optimization, vLLM, DeepSpeed</p>
+                </div>
+                <div class="skill-category">
+                    <h3>🗄️ Data Engineering</h3>
+                    <p>Large-scale Dataset Handling, Vector Databases (FAISS, Pinecone), Data Preprocessing, Knowledge Retrieval Pipelines</p>
+                </div>
+                <div class="skill-category">
+                    <h3>🚀 Scaling & Systems</h3>
+                    <p>Distributed Training, GPU/TPU Optimization, CUDA, Model Parallelism, Hardware Trade-offs (A100, H100), DeepSpeed</p>
+                </div>
+                <div class="skill-category">
+                    <h3>🛡️ AI Safety & Evaluation</h3>
+                    <p>Bias Detection, Hallucination Detection, Red-teaming, Guardrails, BLEU/ROUGE Metrics, Model Safety Assessment</p>
+                </div>
+                <div class="skill-category">
+                    <h3>🔗 AI Ecosystem & Tools</h3>
+                    <p>Hugging Face (Transformers, PEFT), LangChain, LlamaIndex, OpenAI API, Agentic Frameworks, Model APIs</p>
+                </div>
+                <div class="skill-category">
+                    <h3>📊 Mathematics & Theory</h3>
+                    <p>Linear Algebra, Probability, Statistics, Information Theory, Optimization (SGD, Adam), LLM Scaling Laws</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
-    <section id="projects" style="background-color: #f1f5f9;">
+    <section id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>Featured Projects</h2>
-                <p>A selection of my recent machine learning and AI projects</p>
+                <p>A showcase of my recent AI and machine learning projects</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-img" style="background: linear-gradient(45deg, #10b981, #059669);">
-                        <i class="fas fa-eye"></i>
+                    <div class="project-img" style="background: linear-gradient(45deg, #3b82f6, #8b5cf6);">
+                        <i class="fas fa-comments"></i>
                     </div>
                     <div class="project-content">
-                        <h3>Medical Image Diagnosis</h3>
-                        <p>A deep learning system that analyzes medical scans to detect abnormalities with 98% accuracy.</p>
+                        <h3>🤖 Nepali E-commerce Chatbot</h3>
+                        <p>Developed an intelligent Nepali language chatbot for e-commerce using BERT and BiLSTM models. Implemented advanced NLP techniques for intent detection and Named Entity Recognition to enhance customer service experience.</p>
                         <div class="project-tags">
-                            <span class="tag">Computer Vision</span>
-                            <span class="tag">CNN</span>
-                            <span class="tag">TensorFlow</span>
+                            <span class="tag">BERT</span>
+                            <span class="tag">BiLSTM</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Nepali Language</span>
+                            <span class="tag">Intent Detection</span>
                         </div>
-                        <a href="#" class="btn">View Details</a>
+                        <a href="#contact" class="btn">Learn More</a>
                     </div>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-img" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed);">
-                        <i class="fas fa-comment"></i>
+                    <div class="project-img" style="background: linear-gradient(45deg, #10b981, #059669);">
+                        <i class="fas fa-file-alt"></i>
                     </div>
                     <div class="project-content">
-                        <h3>NLP Customer Support</h3>
-                        <p>An intelligent chatbot that understands and responds to customer queries in natural language.</p>
+                        <h3>📄 Document Classification with VGG-16</h3>
+                        <p>Built a robust document classification system using VGG-16 CNN with attention mechanism. Utilized RVL-CDIP dataset with 16 document classes, achieving high accuracy through innovative fusion architecture.</p>
                         <div class="project-tags">
-                            <span class="tag">NLP</span>
-                            <span class="tag">BERT</span>
-                            <span class="tag">PyTorch</span>
+                            <span class="tag">VGG-16</span>
+                            <span class="tag">CNN</span>
+                            <span class="tag">Attention Mechanism</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Document Analysis</span>
                         </div>
-                        <a href="#" class="btn">View Details</a>
+                        <a href="#contact" class="btn">Learn More</a>
                     </div>
                 </div>
                 
@@ -663,14 +893,34 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="project-content">
-                        <h3>Predictive Analytics</h3>
-                        <p>Machine learning models that forecast market trends and customer behavior for e-commerce.</p>
+                        <h3>📈 AI-Powered Stock Prediction</h3>
+                        <p>Implemented comprehensive stock prediction system combining time series analysis and reinforcement learning. Integrated OCR and NLP for news sentiment analysis with end-to-end MLOps pipeline.</p>
                         <div class="project-tags">
                             <span class="tag">Time Series</span>
-                            <span class="tag">XGBoost</span>
-                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Reinforcement Learning</span>
+                            <span class="tag">Sentiment Analysis</span>
+                            <span class="tag">OCR</span>
+                            <span class="tag">MLOps</span>
                         </div>
-                        <a href="#" class="btn">View Details</a>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>🌍 PM2.5 Forecasting Research</h3>
+                        <p>Conducted comparative analysis of time series forecasting models (SARIMA, Prophet, XGBoost) for predicting PM2.5 pollution levels in Kathmandu using advanced statistical and ML methods.</p>
+                        <div class="project-tags">
+                            <span class="tag">SARIMA</span>
+                            <span class="tag">Prophet</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Environmental Data</span>
+                            <span class="tag">Research</span>
+                        </div>
+                        <a href="#contact" class="btn">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -678,183 +928,25 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience">
+    <section id="experience" style="background-color: #f1f5f9;">
         <div class="container">
             <div class="section-title">
-                <h2>Work Experience</h2>
-                <p>My professional journey in machine learning and AI development</p>
+                <h2>Education & Experience</h2>
+                <p>My academic journey and professional experience in AI and machine learning</p>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>Senior Machine Learning Engineer</h3>
-                        <span class="date">2021 - Present</span>
-                        <p>TechInnovate Inc.</p>
-                        <p>Lead development of computer vision systems for autonomous vehicles. Reduced processing time by 40% through model optimization.</p>
+                        <h3>Master of Technology in Artificial Intelligence</h3>
+                        <span class="date">2025 - 2027</span>
+                        <div class="company">Kathmandu University - School of Engineering</div>
+                        <p>Advanced studies in AI research, machine learning algorithms, and deep learning architectures. Focus on Large Language Models, Natural Language Processing, and AI system development.</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>ML Engineer</h3>
-                        <span class="date">2019 - 2021</span>
-                        <p>DataScience Solutions</p>
-                        <p>Developed NLP models for sentiment analysis and automated content categorization. Achieved 95% accuracy on benchmark datasets.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>AI Research Intern</h3>
-                        <span class="date">2018 - 2019</span>
-                        <p>MIT AI Lab</p>
-                        <p>Contributed to research on reinforcement learning algorithms. Published paper on efficient exploration strategies.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" style="background-color: #f1f5f9;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Have a project in mind? Let's collaborate!</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Let's Talk About Your Project</h3>
-                    <p>I'm currently available for freelance work and full-time positions. Feel free to reach out if you want to collaborate or just say hello!</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <a href="mailto:alex@example.com">alex@example.com</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Location</h4>
-                                <p>San Francisco, California</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone</h4>
-                                <a href="tel:+11234567890">+1 (123) 456-7890</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>Alex Morgan</h3>
-                    <p>Machine Learning Engineer specializing in creating intelligent systems that solve real-world problems through artificial intelligence.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-medium-m"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Publications</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Open Source</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Alex Morgan. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Form submission
-        const contactForm = document.querySelector('.contact-form form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
-    </script>
-</body>
-</html>
+                        <h3>AI Research & Teaching</h3>
+                        <span class
